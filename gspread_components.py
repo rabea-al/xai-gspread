@@ -1,58 +1,105 @@
 from xai_components.base import InArg, OutArg, InCompArg, Component, xai_component
 
-@xai_component(color="green")
+@xai_component
 class GspreadAuth(Component):
     """A component that authenticates the user with Gspread and creates a client object.
 
     ##### inPorts:
     - json_path: a path to the JSON key file for OAuth2 authentication.
     """
-    json_path: InCompArg[str]
+    json_path: InArg[str]
+    gc = OutArg[any]
 
     def execute(self, ctx) -> None:
         import gspread
 
         json_path = self.json_path.value
-        gc = gspread.service_account(filename=json_path)
-        ctx.update({'gc': gc})
+        if json_path:
+            self.gc.value = gspread.service_account(filename=json_path)
+        else:
+            # will try to fetch from default gspread locations
+            self.gc.value = gspread.service_account()
+
+        ctx.update({'gc': self.gc.value})
 
         
-@xai_component(color="blue")
+@xai_component
 class OpenSpreadsheet(Component):
-    """A component that opens a Google Spreadsheet by its title.
+    """A component that opens a Google Spreadsheet by its title. 
+    By default will open the first worksheet if worksheet title is not provided.
 
     ##### inPorts:
     - title: the title of the Google Spreadsheet.
     """
     title: InCompArg[str]
+    gc: InArg[any]
+    worksheet_title: InArg[str]
+    sh: OutArg[any]
+    worksheet: OutArg[any]
 
     def execute(self, ctx) -> None:
-        gc = ctx['gc']
-        title = self.title.value
+        gc = self.gc.value if self.gc.value else ctx["gc"]
 
         # Open the spreadsheet
-        sh = gc.open(title)
+        sh = gc.open(self.title.value)
+        ctx.update({'sh': sh})
+        if self.worksheet_title.value:
+            self.worksheet.value = sh.worksheet(self.worksheet_title.value)
+        else:
+            self.worksheet.value = sh.sheet1
+        
+        ctx.update({'worksheet': self.worksheet.value})
+
+
+
+@xai_component
+class OpenSpreadsheetFromUrl(Component):
+    """A component that opens a Google Spreadsheet by its url.
+    By default will open the first worksheet if worksheet title is not provided.
+
+    ##### inPorts:
+    - url: the url of the Google Spreadsheet.
+    """
+    url: InCompArg[str]
+    worksheet_title: InArg[str]
+    sh: OutArg[any]
+    worksheet: OutArg[any]
+
+    def execute(self, ctx) -> None:
+        gc = self.gc.value if self.gc.value else ctx["gc"]
+
+        # Open the spreadsheet
+        sh = gc.open_by_url(self.url.value)
         ctx.update({'sh': sh})
 
+        if self.worksheet_title.value:
+            self.worksheet.value = sh.worksheet(self.worksheet_title.value)
+        else:
+            self.worksheet.value = sh.sheet1
+        
+        ctx.update({'worksheet': self.worksheet.value})
 
-@xai_component(color="orange")
+@xai_component
 class ReadCell(Component):
-    """A component that reads a cell from the spreadsheet.
+    """A component that reads a cell from a worksheet.
 
     ##### inPorts:
     - cell_address: the cell address in the format 'A1'.
     """
+    worksheet: InArg[any]
     cell_address: InCompArg[str]
+    cell: OutArg[list]
 
     def execute(self, ctx) -> None:
-        sh = ctx['sh']
+        worksheet = self.worksheet.value if self.worksheet.value else ctx['worksheet']
         cell_address = self.cell_address.value
 
         # Select a range
-        print(sh.sheet1.get(cell_address))
+        self.cell.value = worksheet.get(cell_address)
+        print(self.cell.value)
+        
 
-
-@xai_component(color="purple")
+@xai_component
 class UpdateCell(Component):
     """A component that updates a cell in the spreadsheet.
 
@@ -60,19 +107,18 @@ class UpdateCell(Component):
     - cell_address: the cell address in the format 'A1'.
     - value: the new value for the cell.
     """
+    worksheet: InArg[any]
     cell_address: InCompArg[str]
     value: InCompArg[str]
 
     def execute(self, ctx) -> None:
-        sh = ctx['sh']
-        cell_address = self.cell_address.value
-        value = self.value.value
+        worksheet = self.worksheet.value if self.worksheet.value else ctx['worksheet']
 
         # Update a range
-        sh.sheet1.update(cell_address, [[value]])
+        worksheet.update(self.cell_address.value, [[self.value.value]])
 
 
-@xai_component(color="brown")
+@xai_component
 class CreateWorksheet(Component):
     """A component that creates a new worksheet in the spreadsheet.
 
@@ -82,30 +128,35 @@ class CreateWorksheet(Component):
     - cols: the number of columns in the new worksheet.
     """
     worksheet_title: InCompArg[str]
-    rows: InCompArg[int]
-    cols: InCompArg[int]
+    rows: InArg[int]
+    cols: InArg[int]
+    worksheet: OutArg[any]
+
+    def __init__(self):
+        super().__init__()
+        self.rows.value = 10
+        self.cols.value = 10
 
     def execute(self, ctx) -> None:
         sh = ctx['sh']
         worksheet_title = self.worksheet_title.value
-        rows = self.rows.value
-        cols = self.cols.value
 
-        # Add a new worksheet with 10 rows and 10 columns
-        worksheet = sh.add_worksheet(title=worksheet_title, rows=rows, cols=cols)
-        ctx.update({'worksheet': worksheet})
+        self.worksheet.value = sh.add_worksheet(title=worksheet_title, rows=self.rows.value, cols=self.cols.value)
+        ctx.update({'worksheet': self.worksheet.value})
 
-@xai_component(color="pink")
+
+@xai_component
 class DeleteWorksheet(Component):
     """A component that deletes a worksheet in the spreadsheet.
 
     ##### inPorts:
     - worksheet_title: the title of the worksheet to be deleted.
     """
+    sh: InArg[any]
     worksheet_title: InCompArg[str]
 
     def execute(self, ctx) -> None:
-        sh = ctx['sh']
+        sh = self.sh.value if self.sh.value else ctx['sh']
         worksheet_title = self.worksheet_title.value
 
         # Get the worksheet to delete
@@ -114,7 +165,7 @@ class DeleteWorksheet(Component):
         # Delete the worksheet
         sh.del_worksheet(worksheet)
 
-@xai_component(color="yellow")
+@xai_component
 class AppendRow(Component):
     """A component that appends a row to the worksheet.
 
@@ -129,8 +180,24 @@ class AppendRow(Component):
 
         # Append a new row with values
         worksheet.append_row(values)
+        
+@xai_component
+class ReadRow(Component):
+    """A component that reads all values from a row in the worksheet.
 
-@xai_component(color="grey")
+    ##### inPorts:
+    - row_values: the number of the row to read.
+    """
+    row_values: InCompArg[int]
+
+    def execute(self, ctx) -> None:
+        worksheet = ctx['worksheet']
+        row_values = self.row_values.value
+
+        # Read all values from the column
+        print(worksheet.row_values(row_values))
+
+@xai_component
 class ReadColumn(Component):
     """A component that reads all values from a column in the worksheet.
 
@@ -147,7 +214,7 @@ class ReadColumn(Component):
         print(worksheet.col_values(col_number))
 
 
-@xai_component(color="teal")
+@xai_component
 class InsertRow(Component):
     """A component that inserts a row at a specific index in the worksheet.
 
@@ -166,7 +233,7 @@ class InsertRow(Component):
         # Insert a new row with values at a specific index
         worksheet.insert_row(values, index)
 
-@xai_component(color="lime")
+@xai_component
 class UpdateRange(Component):
     """A component that updates a range of cells in the worksheet.
 
@@ -174,34 +241,89 @@ class UpdateRange(Component):
     - cell_range: the range of cells to update in the 'A1:B2' format.
     - values: the new values for the cells in the range.
     """
+    worksheet: InArg[any]
     cell_range: InCompArg[str]
     values: InCompArg[list]
 
     def execute(self, ctx) -> None:
-        worksheet = ctx['worksheet']
+        worksheet = self.worksheet.value if self.worksheet.value else ctx['worksheet']
         cell_range = self.cell_range.value
         values = self.values.value
 
         # Update a range of cells with new values
         worksheet.update(cell_range, values)
 
-@xai_component(color="violet")
+@xai_component
 class GetAllRecords(Component):
     """A component that gets all records from the worksheet."""
+    worksheet: InArg[any]
+    records: OutArg[any]
     
     def execute(self, ctx) -> None:
-        worksheet = ctx['worksheet']
+        worksheet = self.worksheet.value if self.worksheet.value else ctx['worksheet']
 
         # Get all records from the worksheet
-        records = worksheet.get_all_records()
-        print(records)
+        self.records.value = worksheet.get_all_self.records.value()
+        print(self.records.value)
 
-@xai_component(color="maroon")
+@xai_component
 class ClearWorksheet(Component):
     """A component that clears all values from the worksheet."""
+    sh: InArg[any]
+    worksheet: InArg[any]
     
     def execute(self, ctx) -> None:
-        worksheet = ctx['worksheet']
 
+        worksheet = self.worksheet.value if self.worksheet.value else ctx['worksheet']
+        
         # Clear all values from the worksheet
         worksheet.clear()
+
+
+@xai_component
+class FindAllStringMatches(Component):
+    """A component that finds all cells in the worksheet that contain a specific string.
+
+    ##### inPorts:
+    - value: the string value to search for.
+    """
+    worksheet: InArg[any]
+    value: InCompArg[str]
+
+    cell_list: OutArg[list]
+    
+    def execute(self, ctx) -> None:
+
+        worksheet = self.worksheet.value if self.worksheet.value else ctx['worksheet']
+        value = self.value.value
+
+        # Find all cells with string value
+        self.cell_list.value = worksheet.findall(value)
+        print(self.cell_list.value)
+
+
+@xai_component
+class FindAllRegexMatches(Component):
+    """A component that finds all cells in the worksheet that match a regular expression.
+
+    ##### inPorts:
+    - regex: the regular expression to search for.
+    """
+    worksheet: InArg[any]
+    regex: InCompArg[str]
+
+    cell_list: OutArg[list]
+    
+    def execute(self, ctx) -> None:
+
+        import re
+
+        worksheet = self.worksheet.value if self.worksheet.value else ctx['worksheet']
+        regex = self.regex.value
+
+        # Compile the regular expression
+        criteria_re = re.compile(regex)
+
+        # Find all cells with regex
+        self.cell_list.value = worksheet.findall(criteria_re)
+        print(self.cell_list.value)

@@ -6,6 +6,13 @@ Component library based on the [GSpread](https://github.com/burnash/gspread) lib
 ![image](https://github.com/XpressAI/xai-gspread/assets/68586800/b4c61851-47bc-4e89-b5de-5d9c4aa985b1)
 
 
+## Important Concepts
+- There are gspread clients `gc`, spreadsheets `sh`, as well as `worksheet`s.
+- A single gspread client can access multiple spreadsheets provided it has the permission to, and spreadsheet can contain multiple worksheets.
+- The newest instance of `gc`, `sh` or `worksheet` will be set on the `ctx` by default so you do not need to link each port.
+- However you can also refer to a previous `gc`, `sh`, or `worksheet` by linking their ports.
+
+
 ## Authentication
 
 [[Source](https://docs.gspread.org/en/latest/oauth2.html)]

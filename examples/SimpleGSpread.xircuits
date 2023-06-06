@@ -1,12 +1,12 @@
 {
     "id": "57241387-cd44-42ce-8583-8d9cd6bfb71a",
-    "offsetX": -24.36823605709513,
-    "offsetY": 66.31486760748943,
-    "zoom": 90,
+    "offsetX": -152.2898946376616,
+    "offsetY": 21.596791769007908,
+    "zoom": 65,
     "gridSize": 0,
     "layers": [
         {
-            "id": "68bf071b-b057-4830-9eb4-2424eec55351",
+            "id": "48e10423-b84a-46b8-9a4d-73f87eb123c7",
             "type": "diagram-links",
             "isSvg": true,
             "transformed": true,
@@ -17,8 +17,8 @@
                     "selected": false,
                     "source": "46455cae-124a-45b0-b1bd-f327eb2a80d7",
                     "sourcePort": "49d19223-fd50-4989-bbac-b2f1e2bf1a3f",
-                    "target": "532497dc-8664-42d7-bfa1-3dc6fdc3da3d",
-                    "targetPort": "8671da7d-3e2a-45cf-ba0e-9bbeea665e3d",
+                    "target": "3b39d363-e183-406c-a700-39aa110a3c13",
+                    "targetPort": "c1890040-fdb1-46e2-a14b-2c7905896fdf",
                     "points": [
                         {
                             "id": "c75bab1e-3d1b-47eb-bdcc-e71838c82ba5",
@@ -45,8 +45,8 @@
                     "selected": false,
                     "source": "96ef7bbb-a398-4e64-9247-1ba0043d54af",
                     "sourcePort": "25ced010-47d8-4753-a550-0b35870f7906",
-                    "target": "532497dc-8664-42d7-bfa1-3dc6fdc3da3d",
-                    "targetPort": "b92bd1f0-b547-41c2-bf29-8d7cced7ffa1",
+                    "target": "3b39d363-e183-406c-a700-39aa110a3c13",
+                    "targetPort": "c04da744-b9aa-4b09-9389-409c34684ebb",
                     "points": [
                         {
                             "id": "f8604397-57cb-4fc5-9076-cc2377844cde",
@@ -71,15 +71,15 @@
                     "id": "bc458269-4381-44ec-977e-aaf8dfb90349",
                     "type": "triangle-link",
                     "selected": false,
-                    "source": "532497dc-8664-42d7-bfa1-3dc6fdc3da3d",
-                    "sourcePort": "3d2e14c3-dc11-4117-886c-f2b08a69b461",
-                    "target": "c2d827a7-7b39-46c3-8dc7-40de82f1ae71",
-                    "targetPort": "6503304a-f155-4d6d-9268-040a030f45f5",
+                    "source": "3b39d363-e183-406c-a700-39aa110a3c13",
+                    "sourcePort": "a42da300-74cd-4b05-8d30-5c711fa7f7fb",
+                    "target": "63964192-b454-4e11-a06a-06d51b179725",
+                    "targetPort": "34d444f0-7d01-4ca2-b876-975f3b28fc7b",
                     "points": [
                         {
                             "id": "6105dfae-c0e0-48c2-a7a4-a02b3c860fd9",
                             "type": "point",
-                            "x": 349.346,
+                            "x": 340.191,
                             "y": 90.318
                         },
                         {
@@ -101,8 +101,8 @@
                     "selected": false,
                     "source": "6789844d-0cf3-4de4-bc9e-bf7e2cf86937",
                     "sourcePort": "09d6fcea-74ef-4e76-9240-d164408ffd33",
-                    "target": "c2d827a7-7b39-46c3-8dc7-40de82f1ae71",
-                    "targetPort": "0a9da6d7-f766-4cca-a1cd-1020d77a65e9",
+                    "target": "63964192-b454-4e11-a06a-06d51b179725",
+                    "targetPort": "b64fdf8a-c74b-4bd3-aa1e-38b3f71902d0",
                     "points": [
                         {
                             "id": "6f4e7213-5e3c-4e33-8b08-5dc8b7351394",
@@ -127,22 +127,22 @@
                     "id": "36458ad1-052c-450a-b41e-1e3d78be5fa2",
                     "type": "triangle-link",
                     "selected": false,
-                    "source": "c2d827a7-7b39-46c3-8dc7-40de82f1ae71",
-                    "sourcePort": "ecc48da1-d9b4-4772-8482-5caf0ea18f53",
-                    "target": "4dc86e8e-d122-4059-834e-d558de625091",
-                    "targetPort": "4db1bb9d-20c0-47b4-ad47-ef65150d95b9",
+                    "source": "63964192-b454-4e11-a06a-06d51b179725",
+                    "sourcePort": "777c1706-2165-40be-bb2b-d129ae0fe5fd",
+                    "target": "d92b915e-dad6-4891-b8ae-d7aed7f99e83",
+                    "targetPort": "e048da5a-7652-4aa9-afa3-5be46aed7e69",
                     "points": [
                         {
                             "id": "1af814a2-bb2a-4e2d-8c0d-6c0390c0ea66",
                             "type": "point",
-                            "x": 527.066,
+                            "x": 611.21,
                             "y": 174.323
                         },
                         {
                             "id": "99817bb6-1bf4-4914-837d-df17e5b537fe",
                             "type": "point",
-                            "x": 561.58,
-                            "y": 245.851
+                            "x": 692.691,
+                            "y": 288.073
                         }
                     ],
                     "labels": [],
@@ -155,22 +155,22 @@
                     "id": "3c4668a3-35c1-4ac7-b745-4ae0c37fba65",
                     "type": "triangle-link",
                     "selected": false,
-                    "source": "4dc86e8e-d122-4059-834e-d558de625091",
-                    "sourcePort": "1515d974-4e6b-4116-a360-d7d08aaa2560",
+                    "source": "d92b915e-dad6-4891-b8ae-d7aed7f99e83",
+                    "sourcePort": "1de7885e-18c5-48df-bb9a-569d05c05476",
                     "target": "2efd9b75-cb47-4f76-ae5d-7c9906caba87",
                     "targetPort": "e8e436bf-0842-439f-adfc-6bb46ebf1525",
                     "points": [
                         {
                             "id": "40fc63de-d60e-470c-a8dd-f806efd38948",
                             "type": "point",
-                            "x": 703.571,
-                            "y": 245.851
+                            "x": 858.987,
+                            "y": 288.073
                         },
                         {
                             "id": "c8e6bef5-f325-44ed-9427-a2b8d7e35a4d",
                             "type": "point",
-                            "x": 752.031,
-                            "y": 332.726
+                            "x": 980.066,
+                            "y": 442.127
                         }
                     ],
                     "labels": [],
@@ -185,20 +185,20 @@
                     "selected": false,
                     "source": "e8420cca-649d-490a-b0ab-7213f820ad05",
                     "sourcePort": "87635758-9ac0-4195-ab1c-9e678189d0ac",
-                    "target": "4dc86e8e-d122-4059-834e-d558de625091",
-                    "targetPort": "8385ce39-130d-4a48-9a9b-19c46b4b4c21",
+                    "target": "d92b915e-dad6-4891-b8ae-d7aed7f99e83",
+                    "targetPort": "2f0ba850-af57-4a3e-a00b-bad42fa1f90c",
                     "points": [
                         {
                             "id": "7116d31c-69c2-4308-a4c2-67181e2fc13a",
                             "type": "point",
-                            "x": 510.203,
-                            "y": 316.973
+                            "x": 542.425,
+                            "y": 381.418
                         },
                         {
                             "id": "a5a80479-1c8d-49f8-a9bc-078b7a411e64",
                             "type": "point",
-                            "x": 561.58,
-                            "y": 261.834
+                            "x": 692.691,
+                            "y": 320.041
                         }
                     ],
                     "labels": [],
@@ -210,7 +210,7 @@
             }
         },
         {
-            "id": "8de68c96-28b5-4d00-b3c4-df4df0e1cfb4",
+            "id": "866385bc-4a02-4aa7-bb5f-fa8bf4b462ea",
             "type": "diagram-nodes",
             "isSvg": false,
             "transformed": true,
@@ -251,19 +251,19 @@
                 "2efd9b75-cb47-4f76-ae5d-7c9906caba87": {
                     "id": "2efd9b75-cb47-4f76-ae5d-7c9906caba87",
                     "type": "custom-node",
-                    "selected": false,
+                    "selected": true,
                     "extras": {
                         "type": "Finish",
                         "borderColor": "rgb(0,192,255)"
                     },
-                    "x": 743.058,
-                    "y": 298.647,
+                    "x": 971.092,
+                    "y": 408.049,
                     "ports": [
                         {
                             "id": "e8e436bf-0842-439f-adfc-6bb46ebf1525",
                             "type": "default",
-                            "x": 744.537,
-                            "y": 325.231,
+                            "x": 972.571,
+                            "y": 434.633,
                             "name": "in-0",
                             "alignment": "left",
                             "parentNode": "2efd9b75-cb47-4f76-ae5d-7c9906caba87",
@@ -280,78 +280,6 @@
                         "e8e436bf-0842-439f-adfc-6bb46ebf1525"
                     ],
                     "portsOutOrder": []
-                },
-                "532497dc-8664-42d7-bfa1-3dc6fdc3da3d": {
-                    "id": "532497dc-8664-42d7-bfa1-3dc6fdc3da3d",
-                    "type": "custom-node",
-                    "selected": false,
-                    "extras": {
-                        "type": "debug",
-                        "path": "xai_components/xai_gspread/gspread_components.py",
-                        "description": "A component that authenticates the user with Gspread and creates a client object.\n\n##### inPorts:\n- json_path: a path to the JSON key file for OAuth2 authentication.",
-                        "lineNo": [
-                            {
-                                "lineno": 4,
-                                "end_lineno": 17
-                            }
-                        ],
-                        "borderColor": "rgb(0,192,255)"
-                    },
-                    "x": 212.419,
-                    "y": 56.249,
-                    "ports": [
-                        {
-                            "id": "b92bd1f0-b547-41c2-bf29-8d7cced7ffa1",
-                            "type": "default",
-                            "x": 213.9,
-                            "y": 82.824,
-                            "name": "in-0",
-                            "alignment": "left",
-                            "parentNode": "532497dc-8664-42d7-bfa1-3dc6fdc3da3d",
-                            "links": [
-                                "0d35a97d-3ccd-4e65-af25-092391a506cf"
-                            ],
-                            "in": true,
-                            "label": "▶"
-                        },
-                        {
-                            "id": "3d2e14c3-dc11-4117-886c-f2b08a69b461",
-                            "type": "default",
-                            "x": 341.852,
-                            "y": 82.824,
-                            "name": "out-0",
-                            "alignment": "right",
-                            "parentNode": "532497dc-8664-42d7-bfa1-3dc6fdc3da3d",
-                            "links": [
-                                "bc458269-4381-44ec-977e-aaf8dfb90349"
-                            ],
-                            "in": false,
-                            "label": "▶"
-                        },
-                        {
-                            "id": "8671da7d-3e2a-45cf-ba0e-9bbeea665e3d",
-                            "type": "default",
-                            "x": 213.9,
-                            "y": 98.808,
-                            "name": "parameter-string-json_path",
-                            "alignment": "left",
-                            "parentNode": "532497dc-8664-42d7-bfa1-3dc6fdc3da3d",
-                            "links": [
-                                "01bc066d-2e81-4bba-bbca-88ed4a059be0"
-                            ],
-                            "in": true,
-                            "label": "★json_path"
-                        }
-                    ],
-                    "name": "GspreadAuth",
-                    "color": "green",
-                    "portsInOrder": [
-                        "b92bd1f0-b547-41c2-bf29-8d7cced7ffa1",
-                        "8671da7d-3e2a-45cf-ba0e-9bbeea665e3d"
-                    ],
-                    "portsOutOrder": [
-                        "3d2e14c3-dc11-4117-886c-f2b08a69b461"
-                    ]
                 },
                 "46455cae-124a-45b0-b1bd-f327eb2a80d7": {
                     "id": "46455cae-124a-45b0-b1bd-f327eb2a80d7",
@@ -383,78 +311,6 @@
                     "portsInOrder": [],
                     "portsOutOrder": [
                         "49d19223-fd50-4989-bbac-b2f1e2bf1a3f"
-                    ]
-                },
-                "c2d827a7-7b39-46c3-8dc7-40de82f1ae71": {
-                    "id": "c2d827a7-7b39-46c3-8dc7-40de82f1ae71",
-                    "type": "custom-node",
-                    "selected": false,
-                    "extras": {
-                        "type": "debug",
-                        "path": "xai_components/xai_gspread/gspread_components.py",
-                        "description": "A component that opens a Google Spreadsheet by its title.\n\n##### inPorts:\n- title: the title of the Google Spreadsheet.",
-                        "lineNo": [
-                            {
-                                "lineno": 21,
-                                "end_lineno": 35
-                            }
-                        ],
-                        "borderColor": "rgb(0,192,255)"
-                    },
-                    "x": 399.9,
-                    "y": 140.249,
-                    "ports": [
-                        {
-                            "id": "6503304a-f155-4d6d-9268-040a030f45f5",
-                            "type": "default",
-                            "x": 401.377,
-                            "y": 166.829,
-                            "name": "in-0",
-                            "alignment": "left",
-                            "parentNode": "c2d827a7-7b39-46c3-8dc7-40de82f1ae71",
-                            "links": [
-                                "bc458269-4381-44ec-977e-aaf8dfb90349"
-                            ],
-                            "in": true,
-                            "label": "▶"
-                        },
-                        {
-                            "id": "ecc48da1-d9b4-4772-8482-5caf0ea18f53",
-                            "type": "default",
-                            "x": 519.572,
-                            "y": 166.829,
-                            "name": "out-0",
-                            "alignment": "right",
-                            "parentNode": "c2d827a7-7b39-46c3-8dc7-40de82f1ae71",
-                            "links": [
-                                "36458ad1-052c-450a-b41e-1e3d78be5fa2"
-                            ],
-                            "in": false,
-                            "label": "▶"
-                        },
-                        {
-                            "id": "0a9da6d7-f766-4cca-a1cd-1020d77a65e9",
-                            "type": "default",
-                            "x": 401.377,
-                            "y": 182.813,
-                            "name": "parameter-string-title",
-                            "alignment": "left",
-                            "parentNode": "c2d827a7-7b39-46c3-8dc7-40de82f1ae71",
-                            "links": [
-                                "1c694846-8d2d-463e-a7a9-cb5027bb389e"
-                            ],
-                            "in": true,
-                            "label": "★title"
-                        }
-                    ],
-                    "name": "OpenSpreadsheet",
-                    "color": "blue",
-                    "portsInOrder": [
-                        "6503304a-f155-4d6d-9268-040a030f45f5",
-                        "0a9da6d7-f766-4cca-a1cd-1020d77a65e9"
-                    ],
-                    "portsOutOrder": [
-                        "ecc48da1-d9b4-4772-8482-5caf0ea18f53"
                     ]
                 },
                 "6789844d-0cf3-4de4-bc9e-bf7e2cf86937": {
@@ -489,79 +345,6 @@
                         "09d6fcea-74ef-4e76-9240-d164408ffd33"
                     ]
                 },
-                "4dc86e8e-d122-4059-834e-d558de625091": {
-                    "id": "4dc86e8e-d122-4059-834e-d558de625091",
-                    "type": "custom-node",
-                    "selected": false,
-                    "extras": {
-                        "type": "debug",
-                        "path": "xai_components/xai_gspread/gspread_components.py",
-                        "description": "A component that reads a cell from the spreadsheet.\n\n##### inPorts:\n- cell_address: the cell address in the format 'A1'.",
-                        "lineNo": [
-                            {
-                                "lineno": 39,
-                                "end_lineno": 52
-                            }
-                        ],
-                        "borderColor": "rgb(0,192,255)",
-                        "nextNode": "None"
-                    },
-                    "x": 552.606,
-                    "y": 211.779,
-                    "ports": [
-                        {
-                            "id": "4db1bb9d-20c0-47b4-ad47-ef65150d95b9",
-                            "type": "default",
-                            "x": 554.086,
-                            "y": 238.356,
-                            "name": "in-0",
-                            "alignment": "left",
-                            "parentNode": "4dc86e8e-d122-4059-834e-d558de625091",
-                            "links": [
-                                "36458ad1-052c-450a-b41e-1e3d78be5fa2"
-                            ],
-                            "in": true,
-                            "label": "▶"
-                        },
-                        {
-                            "id": "1515d974-4e6b-4116-a360-d7d08aaa2560",
-                            "type": "default",
-                            "x": 696.076,
-                            "y": 238.356,
-                            "name": "out-0",
-                            "alignment": "right",
-                            "parentNode": "4dc86e8e-d122-4059-834e-d558de625091",
-                            "links": [
-                                "3c4668a3-35c1-4ac7-b745-4ae0c37fba65"
-                            ],
-                            "in": false,
-                            "label": "▶"
-                        },
-                        {
-                            "id": "8385ce39-130d-4a48-9a9b-19c46b4b4c21",
-                            "type": "default",
-                            "x": 554.086,
-                            "y": 254.34,
-                            "name": "parameter-string-cell_address",
-                            "alignment": "left",
-                            "parentNode": "4dc86e8e-d122-4059-834e-d558de625091",
-                            "links": [
-                                "65e6cbdb-a6e3-4cb6-a0ad-3895b55ba5a0"
-                            ],
-                            "in": true,
-                            "label": "★cell_address"
-                        }
-                    ],
-                    "name": "ReadCell",
-                    "color": "orange",
-                    "portsInOrder": [
-                        "4db1bb9d-20c0-47b4-ad47-ef65150d95b9",
-                        "8385ce39-130d-4a48-9a9b-19c46b4b4c21"
-                    ],
-                    "portsOutOrder": [
-                        "1515d974-4e6b-4116-a360-d7d08aaa2560"
-                    ]
-                },
                 "e8420cca-649d-490a-b0ab-7213f820ad05": {
                     "id": "e8420cca-649d-490a-b0ab-7213f820ad05",
                     "type": "custom-node",
@@ -569,14 +352,14 @@
                     "extras": {
                         "type": "string"
                     },
-                    "x": 444.527,
-                    "y": 282.896,
+                    "x": 476.749,
+                    "y": 347.34,
                     "ports": [
                         {
                             "id": "87635758-9ac0-4195-ab1c-9e678189d0ac",
                             "type": "default",
-                            "x": 502.708,
-                            "y": 309.479,
+                            "x": 534.931,
+                            "y": 373.924,
                             "name": "out-0",
                             "alignment": "right",
                             "parentNode": "e8420cca-649d-490a-b0ab-7213f820ad05",
@@ -592,6 +375,297 @@
                     "portsInOrder": [],
                     "portsOutOrder": [
                         "87635758-9ac0-4195-ab1c-9e678189d0ac"
+                    ]
+                },
+                "3b39d363-e183-406c-a700-39aa110a3c13": {
+                    "id": "3b39d363-e183-406c-a700-39aa110a3c13",
+                    "type": "custom-node",
+                    "selected": false,
+                    "extras": {
+                        "type": "debug",
+                        "path": "xai_components/xai_gspread/gspread_components.py",
+                        "description": "A component that authenticates the user with Gspread and creates a client object.\n\n##### inPorts:\n- json_path: a path to the JSON key file for OAuth2 authentication.",
+                        "lineNo": [
+                            {
+                                "lineno": 4,
+                                "end_lineno": 23
+                            }
+                        ]
+                    },
+                    "x": 212.419,
+                    "y": 56.249,
+                    "ports": [
+                        {
+                            "id": "c04da744-b9aa-4b09-9389-409c34684ebb",
+                            "type": "default",
+                            "x": 213.9,
+                            "y": 82.824,
+                            "name": "in-0",
+                            "alignment": "left",
+                            "parentNode": "3b39d363-e183-406c-a700-39aa110a3c13",
+                            "links": [
+                                "0d35a97d-3ccd-4e65-af25-092391a506cf"
+                            ],
+                            "in": true,
+                            "label": "▶"
+                        },
+                        {
+                            "id": "a42da300-74cd-4b05-8d30-5c711fa7f7fb",
+                            "type": "default",
+                            "x": 332.697,
+                            "y": 82.824,
+                            "name": "out-0",
+                            "alignment": "right",
+                            "parentNode": "3b39d363-e183-406c-a700-39aa110a3c13",
+                            "links": [
+                                "bc458269-4381-44ec-977e-aaf8dfb90349"
+                            ],
+                            "in": false,
+                            "label": "▶"
+                        },
+                        {
+                            "id": "c1890040-fdb1-46e2-a14b-2c7905896fdf",
+                            "type": "default",
+                            "x": 213.9,
+                            "y": 98.808,
+                            "name": "parameter-string-json_path",
+                            "alignment": "left",
+                            "parentNode": "3b39d363-e183-406c-a700-39aa110a3c13",
+                            "links": [
+                                "01bc066d-2e81-4bba-bbca-88ed4a059be0"
+                            ],
+                            "in": true,
+                            "label": "json_path"
+                        }
+                    ],
+                    "name": "GspreadAuth",
+                    "color": "rgb(204,204,204)",
+                    "portsInOrder": [
+                        "c04da744-b9aa-4b09-9389-409c34684ebb",
+                        "c1890040-fdb1-46e2-a14b-2c7905896fdf"
+                    ],
+                    "portsOutOrder": [
+                        "a42da300-74cd-4b05-8d30-5c711fa7f7fb"
+                    ]
+                },
+                "63964192-b454-4e11-a06a-06d51b179725": {
+                    "id": "63964192-b454-4e11-a06a-06d51b179725",
+                    "type": "custom-node",
+                    "selected": false,
+                    "extras": {
+                        "type": "debug",
+                        "path": "xai_components/xai_gspread/gspread_components.py",
+                        "description": "A component that opens a Google Spreadsheet by its title. \nBy default will open the first worksheet if worksheet title is not provided.\n\n##### inPorts:\n- title: the title of the Google Spreadsheet.",
+                        "lineNo": [
+                            {
+                                "lineno": 27,
+                                "end_lineno": 51
+                            }
+                        ]
+                    },
+                    "x": 399.9,
+                    "y": 140.249,
+                    "ports": [
+                        {
+                            "id": "34d444f0-7d01-4ca2-b876-975f3b28fc7b",
+                            "type": "default",
+                            "x": 401.377,
+                            "y": 166.829,
+                            "name": "in-0",
+                            "alignment": "left",
+                            "parentNode": "63964192-b454-4e11-a06a-06d51b179725",
+                            "links": [
+                                "bc458269-4381-44ec-977e-aaf8dfb90349"
+                            ],
+                            "in": true,
+                            "label": "▶"
+                        },
+                        {
+                            "id": "777c1706-2165-40be-bb2b-d129ae0fe5fd",
+                            "type": "default",
+                            "x": 603.715,
+                            "y": 166.829,
+                            "name": "out-0",
+                            "alignment": "right",
+                            "parentNode": "63964192-b454-4e11-a06a-06d51b179725",
+                            "links": [
+                                "36458ad1-052c-450a-b41e-1e3d78be5fa2"
+                            ],
+                            "in": false,
+                            "label": "▶"
+                        },
+                        {
+                            "id": "b64fdf8a-c74b-4bd3-aa1e-38b3f71902d0",
+                            "type": "default",
+                            "x": 401.377,
+                            "y": 182.813,
+                            "name": "parameter-string-title",
+                            "alignment": "left",
+                            "parentNode": "63964192-b454-4e11-a06a-06d51b179725",
+                            "links": [
+                                "1c694846-8d2d-463e-a7a9-cb5027bb389e"
+                            ],
+                            "in": true,
+                            "label": "★title"
+                        },
+                        {
+                            "id": "e2dcd2b4-fa98-4462-9f9e-4d3438ee539e",
+                            "type": "default",
+                            "x": 401.377,
+                            "y": 198.796,
+                            "name": "parameter-any-gc",
+                            "alignment": "left",
+                            "parentNode": "63964192-b454-4e11-a06a-06d51b179725",
+                            "links": [],
+                            "in": true,
+                            "label": "gc"
+                        },
+                        {
+                            "id": "f43b6f3b-e56b-4895-baf5-e61a43a45be8",
+                            "type": "default",
+                            "x": 401.377,
+                            "y": 214.78,
+                            "name": "parameter-string-worksheet_title",
+                            "alignment": "left",
+                            "parentNode": "63964192-b454-4e11-a06a-06d51b179725",
+                            "links": [],
+                            "in": true,
+                            "label": "worksheet_title"
+                        },
+                        {
+                            "id": "05b17e36-d275-4b95-859c-ea263f288309",
+                            "type": "default",
+                            "x": 603.715,
+                            "y": 182.813,
+                            "name": "parameter-out-any-sh",
+                            "alignment": "right",
+                            "parentNode": "63964192-b454-4e11-a06a-06d51b179725",
+                            "links": [],
+                            "in": false,
+                            "label": "sh"
+                        },
+                        {
+                            "id": "63af888d-0610-43d7-a74c-6bde05a401d7",
+                            "type": "default",
+                            "x": 603.715,
+                            "y": 198.796,
+                            "name": "parameter-out-any-worksheet",
+                            "alignment": "right",
+                            "parentNode": "63964192-b454-4e11-a06a-06d51b179725",
+                            "links": [],
+                            "in": false,
+                            "label": "worksheet"
+                        }
+                    ],
+                    "name": "OpenSpreadsheet",
+                    "color": "rgb(153,204,204)",
+                    "portsInOrder": [
+                        "34d444f0-7d01-4ca2-b876-975f3b28fc7b",
+                        "b64fdf8a-c74b-4bd3-aa1e-38b3f71902d0",
+                        "e2dcd2b4-fa98-4462-9f9e-4d3438ee539e",
+                        "f43b6f3b-e56b-4895-baf5-e61a43a45be8"
+                    ],
+                    "portsOutOrder": [
+                        "777c1706-2165-40be-bb2b-d129ae0fe5fd",
+                        "05b17e36-d275-4b95-859c-ea263f288309",
+                        "63af888d-0610-43d7-a74c-6bde05a401d7"
+                    ]
+                },
+                "d92b915e-dad6-4891-b8ae-d7aed7f99e83": {
+                    "id": "d92b915e-dad6-4891-b8ae-d7aed7f99e83",
+                    "type": "custom-node",
+                    "selected": false,
+                    "extras": {
+                        "type": "debug",
+                        "path": "xai_components/xai_gspread/gspread_components.py",
+                        "description": "A component that reads a cell from a worksheet.\n\n##### inPorts:\n- cell_address: the cell address in the format 'A1'.",
+                        "lineNo": [
+                            {
+                                "lineno": 83,
+                                "end_lineno": 99
+                            }
+                        ]
+                    },
+                    "x": 683.717,
+                    "y": 254.001,
+                    "ports": [
+                        {
+                            "id": "e048da5a-7652-4aa9-afa3-5be46aed7e69",
+                            "type": "default",
+                            "x": 685.197,
+                            "y": 280.579,
+                            "name": "in-0",
+                            "alignment": "left",
+                            "parentNode": "d92b915e-dad6-4891-b8ae-d7aed7f99e83",
+                            "links": [
+                                "36458ad1-052c-450a-b41e-1e3d78be5fa2"
+                            ],
+                            "in": true,
+                            "label": "▶"
+                        },
+                        {
+                            "id": "1de7885e-18c5-48df-bb9a-569d05c05476",
+                            "type": "default",
+                            "x": 851.493,
+                            "y": 280.579,
+                            "name": "out-0",
+                            "alignment": "right",
+                            "parentNode": "d92b915e-dad6-4891-b8ae-d7aed7f99e83",
+                            "links": [
+                                "3c4668a3-35c1-4ac7-b745-4ae0c37fba65"
+                            ],
+                            "in": false,
+                            "label": "▶"
+                        },
+                        {
+                            "id": "ac2398fb-e126-4ab6-b2c4-da41ae061b8d",
+                            "type": "default",
+                            "x": 685.197,
+                            "y": 296.563,
+                            "name": "parameter-any-worksheet",
+                            "alignment": "left",
+                            "parentNode": "d92b915e-dad6-4891-b8ae-d7aed7f99e83",
+                            "links": [],
+                            "in": true,
+                            "label": "worksheet"
+                        },
+                        {
+                            "id": "2f0ba850-af57-4a3e-a00b-bad42fa1f90c",
+                            "type": "default",
+                            "x": 685.197,
+                            "y": 312.546,
+                            "name": "parameter-string-cell_address",
+                            "alignment": "left",
+                            "parentNode": "d92b915e-dad6-4891-b8ae-d7aed7f99e83",
+                            "links": [
+                                "65e6cbdb-a6e3-4cb6-a0ad-3895b55ba5a0"
+                            ],
+                            "in": true,
+                            "label": "★cell_address"
+                        },
+                        {
+                            "id": "75eb1e6b-13cf-4c45-872f-9c5b0f1e6eaa",
+                            "type": "default",
+                            "x": 851.493,
+                            "y": 296.563,
+                            "name": "parameter-out-list-cell",
+                            "alignment": "right",
+                            "parentNode": "d92b915e-dad6-4891-b8ae-d7aed7f99e83",
+                            "links": [],
+                            "in": false,
+                            "label": "cell"
+                        }
+                    ],
+                    "name": "ReadCell",
+                    "color": "rgb(102,51,102)",
+                    "portsInOrder": [
+                        "e048da5a-7652-4aa9-afa3-5be46aed7e69",
+                        "ac2398fb-e126-4ab6-b2c4-da41ae061b8d",
+                        "2f0ba850-af57-4a3e-a00b-bad42fa1f90c"
+                    ],
+                    "portsOutOrder": [
+                        "1de7885e-18c5-48df-bb9a-569d05c05476",
+                        "75eb1e6b-13cf-4c45-872f-9c5b0f1e6eaa"
                     ]
                 }
             }
