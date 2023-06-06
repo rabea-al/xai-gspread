@@ -2,11 +2,15 @@ from xai_components.base import InArg, OutArg, InCompArg, Component, xai_compone
 
 @xai_component
 class GspreadAuth(Component):
-    """A component that authenticates the user with Gspread and creates a client object.
+    """A component to authenticate the user with Gspread and generate a client object.
 
     ##### inPorts:
-    - json_path: a path to the JSON key file for OAuth2 authentication.
+    - json_path: The path to the JSON key file for OAuth2 authentication.
+
+    ##### outPorts:
+    - gc: A Gspread client object.
     """
+
     json_path: InArg[str]
     gc: OutArg[any]
 
@@ -25,12 +29,19 @@ class GspreadAuth(Component):
         
 @xai_component
 class OpenSpreadsheet(Component):
-    """A component that opens a Google Spreadsheet by its title. 
-    By default will open the first worksheet if worksheet title is not provided.
+    """A component to open a Google Spreadsheet by its title.
+    If a worksheet title is not provided, it will open the first worksheet by default.
 
     ##### inPorts:
-    - title: the title of the Google Spreadsheet.
+    - title: The title of the Google Spreadsheet.
+    - gc: A Gspread client object.
+    - worksheet_title: The title of the worksheet.
+
+    ##### outPorts:
+    - sh: The opened Spreadsheet object.
+    - worksheet: The selected worksheet object.
     """
+
     title: InCompArg[str]
     gc: InArg[any]
     worksheet_title: InArg[str]
@@ -54,12 +65,19 @@ class OpenSpreadsheet(Component):
 
 @xai_component
 class OpenSpreadsheetFromUrl(Component):
-    """A component that opens a Google Spreadsheet by its url.
-    By default will open the first worksheet if worksheet title is not provided.
+    """A component to open a Google Spreadsheet by its URL.
+    If a worksheet title is not provided, it will open the first worksheet by default.
 
     ##### inPorts:
-    - url: the url of the Google Spreadsheet.
+    - url: The URL of the Google Spreadsheet.
+    - gc: A Gspread client object.
+    - worksheet_title: The title of the worksheet.
+
+    ##### outPorts:
+    - sh: The opened Spreadsheet object.
+    - worksheet: The selected worksheet object.
     """
+
     url: InCompArg[str]
     gc: InArg[any]
     worksheet_title: InArg[str]
@@ -83,11 +101,17 @@ class OpenSpreadsheetFromUrl(Component):
 
 @xai_component
 class OpenWorksheet(Component):
-    """A component that opens a Google worksheet. Will return the first one if title not provided.
+    """A component to open a Google worksheet.
+    If a title is not provided, it will return the first worksheet.
 
     ##### inPorts:
-    - title: the title of the Google worksheet.
+    - sh: The Spreadsheet object.
+    - worksheet_title: The title of the worksheet.
+
+    ##### outPorts:
+    - worksheet: The selected worksheet object.
     """
+
     sh: InArg[any]
     worksheet_title: InArg[str]
 
@@ -105,11 +129,16 @@ class OpenWorksheet(Component):
 
 @xai_component
 class ReadCell(Component):
-    """A component that reads a cell from a worksheet.
+    """A component to read a cell from a worksheet.
 
     ##### inPorts:
-    - cell_address: the cell address in the format 'A1'.
+    - worksheet: The worksheet object.
+    - cell_address: The cell address in the 'A1' format.
+
+    ##### outPorts:
+    - cell: The cell content.
     """
+
     worksheet: InArg[any]
     cell_address: InCompArg[str]
     cell: OutArg[list]
@@ -125,12 +154,14 @@ class ReadCell(Component):
 
 @xai_component
 class UpdateCell(Component):
-    """A component that updates a cell in the spreadsheet.
+    """A component to update a cell in the spreadsheet.
 
     ##### inPorts:
-    - cell_address: the cell address in the format 'A1'.
-    - value: the new value for the cell.
+    - worksheet: The worksheet object.
+    - cell_address: The cell address in the 'A1' format.
+    - value: The new value for the cell.
     """
+
     worksheet: InArg[any]
     cell_address: InCompArg[str]
     value: InCompArg[str]
@@ -144,11 +175,18 @@ class UpdateCell(Component):
 
 @xai_component
 class CreateSpreadsheet(Component):
-    """A component that creates a new spreadsheet.
+    """A component to create a new spreadsheet.
 
     ##### inPorts:
-    - spreadsheet_title: the title of the new spreadsheet.
+    - gc: A Gspread client object.
+    - spreadsheet_title: The title for the new spreadsheet.
+    - share_email: The email to share the new spreadsheet with.
+
+    ##### outPorts:
+    - sh: The created Spreadsheet object.
+    - worksheet: The first worksheet of the new spreadsheet.
     """
+
     gc: InArg[any]
     spreadsheet_title: InCompArg[str]
     share_email: InArg[str]
@@ -169,13 +207,18 @@ class CreateSpreadsheet(Component):
 
 @xai_component
 class CreateWorksheet(Component):
-    """A component that creates a new worksheet in the spreadsheet.
+    """A component to create a new worksheet in the spreadsheet.
 
     ##### inPorts:
-    - worksheet_title: the title of the new worksheet.
-    - rows: the number of rows in the new worksheet.
-    - cols: the number of columns in the new worksheet.
+    - sh: The Spreadsheet object.
+    - worksheet_title: The title for the new worksheet.
+    - rows: The number of rows for the new worksheet. Default 1000.
+    - cols: The number of columns for the new worksheet. Default 26.
+
+    ##### outPorts:
+    - worksheet: The created worksheet object.
     """
+
     sh: InArg[any]
     worksheet_title: InCompArg[str]
     rows: InArg[int]
@@ -197,10 +240,11 @@ class CreateWorksheet(Component):
 
 @xai_component
 class DeleteWorksheet(Component):
-    """A component that deletes a worksheet in the spreadsheet.
+    """A component to delete a worksheet in the spreadsheet.
 
     ##### inPorts:
-    - worksheet_title: the title of the worksheet to be deleted.
+    - sh: The Spreadsheet object.
+    - worksheet_title: The title of the worksheet to be deleted.
     """
     sh: InArg[any]
     worksheet_title: InCompArg[str]
@@ -217,11 +261,13 @@ class DeleteWorksheet(Component):
 
 @xai_component
 class AppendRow(Component):
-    """A component that appends a row to the worksheet.
+    """A component that adds a row of values at the bottom of the worksheet.
 
     ##### inPorts:
-    - values: the values to append as a new row.
+    - worksheet: the worksheet object.
+    - values: a list of values to be added as a new row.
     """
+
     worksheet: InArg[any]
     values: InCompArg[list]
 
@@ -234,37 +280,49 @@ class AppendRow(Component):
         
 @xai_component
 class ReadRow(Component):
-    """A component that reads all values from a row in the worksheet.
+    """A component that retrieves all values from a specific row in the worksheet.
 
     ##### inPorts:
-    - row_values: the number of the row to read.
+    - worksheet: The worksheet object.
+    - row_index: The index of the row from which the values need to be retrieved.
+
+    ##### outPorts:
+    - row_values: The values obtained from the specified row.
     """
+
     worksheet: InArg[any]
-    row_values: InCompArg[int]
+    row_index: InCompArg[int]
+    row_values: OutArg[any]
 
     def execute(self, ctx) -> None:
         worksheet = self.worksheet.value if self.worksheet.value else ctx['worksheet']
-        row_values = self.row_values.value
 
-        # Read all values from the column
-        print(worksheet.row_values(row_values))
+        # Read all values from the row
+        self.row_values.value = worksheet.row_values(self.row_index.value)
+        print(self.row_values.value)
 
 @xai_component
 class ReadColumn(Component):
-    """A component that reads all values from a column in the worksheet.
+    """A component that reads all values from a specific column in the worksheet.
 
     ##### inPorts:
-    - col_values: the number of the column to read.
+    - worksheet: The worksheet object.
+    - col_index: The index of the column from which the values need to be read.
+
+    ##### outPorts:
+    - col_values: The values obtained from the specified column.
     """
+
     worksheet: InArg[any]
-    col_values: InCompArg[int]
+    col_index: InCompArg[int]
+    col_values: OutArg[any]
 
     def execute(self, ctx) -> None:
         worksheet = self.worksheet.value if self.worksheet.value else ctx['worksheet']
-        col_values = self.col_values.value
 
         # Read all values from the column
-        print(worksheet.col_values(col_values))
+        self.col_values.value = worksheet.col_values(self.col_index.value)
+        print(self.col_values.value)
 
 
 @xai_component
@@ -272,9 +330,10 @@ class InsertRow(Component):
     """A component that inserts a row at a specific index in the worksheet.
 
     ##### inPorts:
-    - values: the values to insert as a new row.
-    - index: the index at which to insert the new row.
+    - values: The values to be inserted as a new row.
+    - index: The index at which the new row needs to be inserted.
     """
+
     values: InCompArg[list]
     index: InCompArg[int]
 
@@ -288,12 +347,14 @@ class InsertRow(Component):
 
 @xai_component
 class UpdateRange(Component):
-    """A component that updates a range of cells in the worksheet.
+    """A component that updates a range of cells in the worksheet with new values.
 
     ##### inPorts:
-    - cell_range: the range of cells to update in the 'A1:B2' format.
-    - values: the new values for the cells in the range.
+    - worksheet: The worksheet object.
+    - cell_range: The range of cells to be updated, specified in the 'A1:B2' format.
+    - values: The new values for the cells in the range.
     """
+
     worksheet: InArg[any]
     cell_range: InCompArg[str]
     values: InCompArg[list]
@@ -309,7 +370,14 @@ class UpdateRange(Component):
 
 @xai_component
 class GetAllValues(Component):
-    """A component that gets all values from a worksheet as a list of lists"""
+    """A component that retrieves all values from a worksheet as a list of lists.
+
+    ##### inPorts:
+    - worksheet: The worksheet object.
+
+    ##### outPorts:
+    - list_of_values: A list of all values retrieved from the worksheet.
+    """
     worksheet: InArg[any]
     list_of_values: OutArg[list]
     
@@ -323,7 +391,15 @@ class GetAllValues(Component):
 
 @xai_component
 class GetAllRecords(Component):
-    """A component that gets all records from the worksheet."""
+    """A component that retrieves all records from the worksheet as a list of dictionaries.
+
+    ##### inPorts:
+    - worksheet: The worksheet object.
+
+    ##### outPorts:
+    - records: A list of all records retrieved from the worksheet. Each record is represented as a dictionary.
+    """
+
     worksheet: InArg[any]
     records: OutArg[any]
     
@@ -336,7 +412,13 @@ class GetAllRecords(Component):
 
 @xai_component
 class ClearWorksheet(Component):
-    """A component that clears all values from the worksheet."""
+    """A component that removes all values from the worksheet.
+
+    ##### inPorts:
+    - sh: The worksheet object.
+    - worksheet: The worksheet object.
+    """
+
     sh: InArg[any]
     worksheet: InArg[any]
     
@@ -353,8 +435,13 @@ class FindAllStringMatches(Component):
     """A component that finds all cells in the worksheet that contain a specific string.
 
     ##### inPorts:
-    - value: the string value to search for.
+    - worksheet: The worksheet object.
+    - value: The string value to search for in the cells.
+
+    ##### outPorts:
+    - cell_list: A list of all cells that contain the specified string value.
     """
+
     worksheet: InArg[any]
     value: InCompArg[str]
 
@@ -372,10 +459,14 @@ class FindAllStringMatches(Component):
 
 @xai_component
 class FindAllRegexMatches(Component):
-    """A component that finds all cells in the worksheet that match a regular expression.
+    """A component that finds all cells in the worksheet that match a specified regular expression.
 
     ##### inPorts:
-    - regex: the regular expression to search for.
+    - worksheet: The worksheet object.
+    - regex: The regular expression to search for in the cells.
+
+    ##### outPorts:
+    - cell_list: A list of all cells that match the specified regular expression.
     """
     worksheet: InArg[any]
     regex: InCompArg[str]
