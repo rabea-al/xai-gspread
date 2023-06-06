@@ -8,7 +8,7 @@ class GspreadAuth(Component):
     - json_path: a path to the JSON key file for OAuth2 authentication.
     """
     json_path: InArg[str]
-    gc = OutArg[any]
+    gc: OutArg[any]
 
     def execute(self, ctx) -> None:
         import gspread
@@ -61,6 +61,7 @@ class OpenSpreadsheetFromUrl(Component):
     - url: the url of the Google Spreadsheet.
     """
     url: InCompArg[str]
+    gc: InArg[any]
     worksheet_title: InArg[str]
     sh: OutArg[any]
     worksheet: OutArg[any]
@@ -71,6 +72,29 @@ class OpenSpreadsheetFromUrl(Component):
         # Open the spreadsheet
         sh = gc.open_by_url(self.url.value)
         ctx.update({'sh': sh})
+
+        if self.worksheet_title.value:
+            self.worksheet.value = sh.worksheet(self.worksheet_title.value)
+        else:
+            self.worksheet.value = sh.sheet1
+        
+        ctx.update({'worksheet': self.worksheet.value})
+
+
+@xai_component
+class OpenWorksheet(Component):
+    """A component that opens a Google worksheet. Will return the first one if title not provided.
+
+    ##### inPorts:
+    - title: the title of the Google worksheet.
+    """
+    sh: InArg[any]
+    worksheet_title: InArg[str]
+
+    worksheet: OutArg[any]
+
+    def execute(self, ctx) -> None:
+        sh = self.sh.value if self.sh.value else ctx["sh"]
 
         if self.worksheet_title.value:
             self.worksheet.value = sh.worksheet(self.worksheet_title.value)
@@ -119,6 +143,31 @@ class UpdateCell(Component):
 
 
 @xai_component
+class CreateSpreadsheet(Component):
+    """A component that creates a new spreadsheet.
+
+    ##### inPorts:
+    - spreadsheet_title: the title of the new spreadsheet.
+    """
+    gc: InArg[any]
+    spreadsheet_title: InCompArg[str]
+    share_email: InArg[str]
+    sh: OutArg[any]
+    worksheet: OutArg[any]
+
+    def execute(self, ctx) -> None:
+        gc = self.gc.value if self.gc.value else ctx['gc']
+
+        self.sh.value = gc.create(self.spreadsheet_title.value)
+
+        if self.share_email.value:
+            self.sh.value.share('self.share_email.value', perm_type='user', role='writer')
+
+        ctx.update({'sh': self.sh.value})
+        self.worksheet.value = self.sh.value.sheet1
+        ctx.update({'worksheet': self.worksheet.value})
+
+@xai_component
 class CreateWorksheet(Component):
     """A component that creates a new worksheet in the spreadsheet.
 
@@ -127,6 +176,7 @@ class CreateWorksheet(Component):
     - rows: the number of rows in the new worksheet.
     - cols: the number of columns in the new worksheet.
     """
+    sh: InArg[any]
     worksheet_title: InCompArg[str]
     rows: InArg[int]
     cols: InArg[int]
@@ -134,11 +184,11 @@ class CreateWorksheet(Component):
 
     def __init__(self):
         super().__init__()
-        self.rows.value = 10
-        self.cols.value = 10
+        self.rows.value = 1000
+        self.cols.value = 26
 
     def execute(self, ctx) -> None:
-        sh = ctx['sh']
+        sh = self.sh.value if self.sh.value else ctx['sh']
         worksheet_title = self.worksheet_title.value
 
         self.worksheet.value = sh.add_worksheet(title=worksheet_title, rows=self.rows.value, cols=self.cols.value)
@@ -172,10 +222,11 @@ class AppendRow(Component):
     ##### inPorts:
     - values: the values to append as a new row.
     """
+    worksheet: InArg[any]
     values: InCompArg[list]
 
     def execute(self, ctx) -> None:
-        worksheet = ctx['worksheet']
+        worksheet = self.worksheet.value if self.worksheet.value else ctx['worksheet']
         values = self.values.value
 
         # Append a new row with values
@@ -188,10 +239,11 @@ class ReadRow(Component):
     ##### inPorts:
     - row_values: the number of the row to read.
     """
+    worksheet: InArg[any]
     row_values: InCompArg[int]
 
     def execute(self, ctx) -> None:
-        worksheet = ctx['worksheet']
+        worksheet = self.worksheet.value if self.worksheet.value else ctx['worksheet']
         row_values = self.row_values.value
 
         # Read all values from the column
@@ -202,16 +254,17 @@ class ReadColumn(Component):
     """A component that reads all values from a column in the worksheet.
 
     ##### inPorts:
-    - col_number: the number of the column to read.
+    - col_values: the number of the column to read.
     """
-    col_number: InCompArg[int]
+    worksheet: InArg[any]
+    col_values: InCompArg[int]
 
     def execute(self, ctx) -> None:
-        worksheet = ctx['worksheet']
-        col_number = self.col_number.value
+        worksheet = self.worksheet.value if self.worksheet.value else ctx['worksheet']
+        col_values = self.col_values.value
 
         # Read all values from the column
-        print(worksheet.col_values(col_number))
+        print(worksheet.col_values(col_values))
 
 
 @xai_component
@@ -253,6 +306,21 @@ class UpdateRange(Component):
         # Update a range of cells with new values
         worksheet.update(cell_range, values)
 
+
+@xai_component
+class GetAllValues(Component):
+    """A component that gets all values from a worksheet as a list of lists"""
+    worksheet: InArg[any]
+    list_of_values: OutArg[list]
+    
+    def execute(self, ctx) -> None:
+        worksheet = self.worksheet.value if self.worksheet.value else ctx['worksheet']
+
+        # Get all records from the worksheet
+        self.list_of_values.value = worksheet.get_values()
+        print(self.list_of_values.value)
+
+
 @xai_component
 class GetAllRecords(Component):
     """A component that gets all records from the worksheet."""
@@ -263,7 +331,7 @@ class GetAllRecords(Component):
         worksheet = self.worksheet.value if self.worksheet.value else ctx['worksheet']
 
         # Get all records from the worksheet
-        self.records.value = worksheet.get_all_self.records.value()
+        self.records.value = worksheet.get_all_records()
         print(self.records.value)
 
 @xai_component
