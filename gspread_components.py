@@ -51,15 +51,33 @@ class OpenSpreadsheet(Component):
     def execute(self, ctx) -> None:
         gc = self.gc.value if self.gc.value else ctx["gc"]
 
-        # Open the spreadsheet
-        sh = gc.open(self.title.value)
-        ctx.update({'sh': sh})
-        if self.worksheet_title.value:
-            self.worksheet.value = sh.worksheet(self.worksheet_title.value)
-        else:
-            self.worksheet.value = sh.sheet1
-        
-        ctx.update({'worksheet': self.worksheet.value})
+        try:
+            # Attempt to open the spreadsheet by title
+            sh = gc.open(self.title.value)
+            self.sh.value = sh
+            print(f"Spreadsheet '{self.title.value}' opened successfully.")
+            
+            # Attempt to open the specified worksheet or default to the first one
+            if self.worksheet_title.value:
+                self.worksheet.value = sh.worksheet(self.worksheet_title.value)
+                print(f"Worksheet '{self.worksheet_title.value}' opened successfully.")
+            else:
+                self.worksheet.value = sh.sheet1  # Open the first worksheet
+                print("No worksheet title provided. Opened the first worksheet by default.")
+            
+            # Update the context with the opened spreadsheet and worksheet
+            ctx.update({'sh': self.sh.value, 'worksheet': self.worksheet.value})
+
+        except SpreadsheetNotFound:
+            print(f"Error: Spreadsheet '{self.title.value}' not found. Please check the title or sharing permissions.")
+            raise
+        except WorksheetNotFound:
+            print(f"Error: Worksheet '{self.worksheet_title.value}' not found in the spreadsheet '{self.title.value}'.")
+            raise
+        except Exception as e:
+            print(f"An unexpected error occurred: {e}")
+            raise
+
 
 
 
