@@ -1,54 +1,136 @@
-# Xircuits Google Spreadsheet Component Library
+
+<p align="center">
+  <a href="https://github.com/XpressAI/xircuits/tree/master/xai_components#xircuits-component-library-list">Component Libraries</a> •
+  <a href="https://github.com/XpressAI/xircuits/tree/master/project-templates#xircuits-project-templates-list">Project Templates</a>
+  <br>
+  <a href="https://xircuits.io/">Docs</a> •
+  <a href="https://xircuits.io/docs/Installation">Install</a> •
+  <a href="https://xircuits.io/docs/category/tutorials">Tutorials</a> •
+  <a href="https://xircuits.io/docs/category/developer-guide">Developer Guides</a> •
+  <a href="https://github.com/XpressAI/xircuits/blob/master/CONTRIBUTING.md">Contribute</a> •
+  <a href="https://www.xpress.ai/blog/">Blog</a> •
+  <a href="https://discord.com/invite/vgEg2ZtxCw">Discord</a>
+</p>
+
+<p align="center"><i>Xircuits Component Library for GSpread – Simplify your Google Sheets operations directly in Xircuits workflows.</i></p>
+
+---
+
+## Xircuits Component Library for GSpread
+
+Integrate Google Sheets functionalities into Xircuits workflows effortlessly. Perform operations like spreadsheet creation, cell updates, and worksheet management using the GSpread library.
 
 
-Component library based on the [GSpread](https://github.com/burnash/gspread) library.
+## Table of Contents
 
-![image](https://github.com/XpressAI/xai-gspread/assets/68586800/b4c61851-47bc-4e89-b5de-5d9c4aa985b1)
-
-
-## Important Concepts
-- There are gspread clients `gc`, spreadsheets `sh`, as well as `worksheet`s.
-- A single gspread client can access multiple spreadsheets provided it has the permission to, and spreadsheet can contain multiple worksheets.
-- The newest instance of `gc`, `sh` or `worksheet` will be set on the `ctx` by default so you do not need to link each port.
-- However you can also refer to a previous `gc`, `sh`, or `worksheet` by linking their ports.
+- [Preview](#preview)
+- [Prerequisites](#prerequisites)
+- [Main Xircuits Components](#main-xircuits-components)
+- [Try the Examples](#try-the-examples)
+- [Installation](#installation)
 
 
-## Authentication
+## Preview
 
-[[Source](https://docs.gspread.org/en/latest/oauth2.html)]
+### SimpleGSpread Example 
 
-To access spreadsheets via Google Sheets API you need to authenticate and authorize your application. If you plan to access spreadsheets on behalf of a bot account use Service Account. If you’d like to access spreadsheets on behalf of end users (including yourself) use OAuth Client ID. For this demo, we're using the Service Credentials.
+<img src="https://github.com/user-attachments/assets/fee8c1ad-68af-4243-bdc0-5d5e9c0d1046" alt="SimpleGSpread_example" />
 
-### Getting Service Credentials
+### SimpleGSpread Result
 
-A service account is a special type of Google account intended to represent a non-human user that needs to authenticate and be authorized to access data in Google APIs.
+<img src="https://github.com/user-attachments/assets/52fd64bb-7949-468f-ac98-b5d14c43029b" alt="SimpleGSpread" />
 
-Since it’s a separate account, by default it does not have access to any spreadsheet until you share it with this account. Just like any other Google account.
+## Prerequisites
+
+Before you begin, you will need:
+
+1. Python 3.9+.
+2. Xircuits installed.
+3. Google Service Account JSON key for authentication.
 
 
-1. Enable API Access.
-    1. Head to Google Developers Console and create a new project (or select the one you already have).
-    2. In the box labeled “Search for APIs and Services”, search for “Google Drive API” and enable it.
-    3. In the box labeled “Search for APIs and Services”, search for “Google Sheets API” and enable it.
-2. Go to “APIs & Services > Credentials” and choose “Create credentials > Service account key”.
-3. Fill out the form
-4. Click “Create” and “Done”.
-5. Press “Manage service accounts” above Service Accounts.
-6. Press on ⋮ near recently created service account and select “Manage keys” and then click on “ADD KEY > Create new key”.
-7. Select JSON key type and press “Create”.
-You will automatically download a JSON file with credentials. It may look like this:
-    ```
-    {
-        "type": "service_account",
-        "project_id": "api-project-XXX",
-        "private_key_id": "2cd … ba4",
-        "private_key": "-----BEGIN PRIVATE KEY-----\nNrDyLw … jINQh/9\n-----END PRIVATE KEY-----\n",
-        "client_email": "473000000000-yoursisdifferent@developer.gserviceaccount.com",
-        "client_id": "473 … hd.apps.googleusercontent.com",
-        ...
-    }
-    ```
-  Remember the path to the downloaded credentials file. Also, in the next step you’ll need the value of client_email from this file.
+## Main Xircuits Components
 
-8. **Very important!** Go to your spreadsheet and share it with a client_email from the step above. Just like you do with any other Google account. If you don’t do this, you’ll get a gspread.exceptions.SpreadsheetNotFound exception when trying to access this spreadsheet from your application or a script.
-9. Place the credentials in a place that jupyterlab can access. You can then pass the path in the `GSpreadAuth` component. For more permanent solutions, you can move the downloaded file to ~/.config/gspread/service_account.json. Windows users should put this file to %APPDATA%\gspread\service_account.json.
+### GspreadAuth Component:
+Authenticates using a Google Service Account JSON key and initializes a GSpread client.
+
+<img src="https://github.com/user-attachments/assets/049d0621-fda9-478d-b7f1-0e47f1664198" alt="GspreadAuth" width="200" height="75" />
+
+### OpenSpreadsheet Component:
+Opens a Google Spreadsheet by its title and selects a specified worksheet or defaults to the first worksheet.
+
+<img src="https://github.com/user-attachments/assets/33d78200-17d4-4416-8ca7-7089d699a165" alt="OpenSpreadsheet" width="200" height="150" />
+
+### OpenSpreadsheetFromUrl Component:
+Opens a Google Spreadsheet using its URL and selects a worksheet.
+
+### OpenWorksheet Component:
+Selects a worksheet by its title or defaults to the first worksheet.
+
+### CreateSpreadsheet Component:
+Creates a new Google Spreadsheet and optionally shares it with an email.
+
+### CreateWorksheet Component:
+Adds a new worksheet to an existing spreadsheet with customizable rows and columns.
+
+### UpdateRange Component:
+Updates a range of cells in the worksheet with specified values.
+
+### GetAllValues Component:
+Retrieves all values from a worksheet as a list of lists.
+
+### GetAllRecords Component:
+Retrieves all records from a worksheet as a list of dictionaries.
+
+### FindAllStringMatches Component:
+Finds all cells containing a specific string value.
+
+### FindAllRegexMatches Component:
+Finds all cells matching a specified regular expression.
+
+
+## Try the Examples
+
+We have provided example workflows to help you get started with the GSpread component library. These examples demonstrate how to authenticate, read, and update Google Sheets within a Xircuits workflow.
+
+### SimpleGSpread
+This example demonstrates how to authenticate, read a cell's value, and update it with new data.
+
+
+## Installation
+To use this component library, ensure that you have an existing [Xircuits setup](https://xircuits.io/docs/main/Installation). You can then install the GSpread library using the [component library interface](https://xircuits.io/docs/component-library/installation#installation-using-the-xircuits-library-interface), or through the CLI using:
+
+```bash
+xircuits install gspread
+```
+
+Alternatively, you can install it manually by cloning and installing it:
+
+```bash
+# base Xircuits directory
+git clone https://github.com/XpressAI/xai-gspread xai_components/xai_gspread
+pip install -r xai_components/xai_gspread/requirements.txt
+```
+
+### Authentication and Service Credentials Setup
+
+To access spreadsheets via Google Sheets API, you need to authenticate and authorize your application. If you plan to access spreadsheets on behalf of a bot account, use a Service Account. Below are the steps to set up service credentials.
+
+1. Enable API Access:
+    1. Go to Google Developers Console and create a new project (or select an existing one).
+    2. In "Search for APIs and Services," enable both "Google Drive API" and "Google Sheets API."
+2. Create Service Account Credentials:
+    1. Navigate to "APIs & Services > Credentials" and click "Create credentials > Service account key."
+    2. Fill out the form and select JSON key type.
+    3. Download the JSON file containing your credentials.
+3. Share Spreadsheet Access:
+    - Share your spreadsheet with the `client_email` listed in the JSON file.
+4. Configure Credentials:
+    - Place the downloaded JSON file in a location accessible to your application.
+    - Optionally, move the file to `~/.config/gspread/service_account.json` (Linux/Mac) or `%APPDATA%\gspread\service_account.json` (Windows).
+
+For more details, refer to the [GSpread Authentication Guide](https://docs.gspread.org/en/latest/oauth2.html).
+
+## Notes
+1. Ensure the Google Service Account is shared with the spreadsheets you intend to access.
+2. Keep your JSON key secure and do not expose it publicly.
