@@ -1,4 +1,8 @@
 from xai_components.base import InArg, OutArg, InCompArg, Component, xai_component
+import os
+import base64
+import json
+import gspread
 
 @xai_component
 class GspreadAuth(Component):
@@ -15,17 +19,26 @@ class GspreadAuth(Component):
     gc: OutArg[any]
 
     def execute(self, ctx) -> None:
-        import gspread
-
         json_path = self.json_path.value
-        if json_path:
+
+        if json_path and os.path.exists(json_path):
+            print(f"Using provided JSON key file: {json_path}")
             self.gc.value = gspread.service_account(filename=json_path)
         else:
-            # will try to fetch from default gspread locations
-            self.gc.value = gspread.service_account()
+            print("Provided path is empty or does not exist. Checking environment variable...")
+            encoded_json = os.getenv("GOOGLE_SERVICE_ACCOUNT_CREDENTIALS")
+
+            if not encoded_json:
+                raise ValueError("Neither a valid file path nor GOOGLE_SERVICE_ACCOUNT_CREDENTIALS environment variable was found.")
+
+            print("Using GOOGLE_SERVICE_ACCOUNT_CREDENTIALS from environment variable...")
+
+            gspread_creds = json.loads(base64.b64decode(encoded_json).decode())
+
+            self.gc.value = gspread.service_account_from_dict(gspread_creds)
 
         ctx.update({'gc': self.gc.value})
-
+        print("Gspread authentication completed successfully.")
         
 @xai_component
 class OpenSpreadsheet(Component):
