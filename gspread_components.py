@@ -33,9 +33,9 @@ class GspreadAuth(Component):
 
             print("Using GOOGLE_SERVICE_ACCOUNT_CREDENTIALS from environment variable...")
 
-            GOOGLE_SERVICE_ACCOUNT_CREDENTIALS_dict = json.loads(base64.b64decode(encoded_json).decode())
+            gdrive_creds = json.loads(base64.b64decode(encoded_json).decode())
 
-            self.gc.value = gspread.service_account_from_dict(GOOGLE_SERVICE_ACCOUNT_CREDENTIALS_dict)
+            self.gc.value = gspread.service_account_from_dict(gdrive_creds)
 
         ctx.update({'gc': self.gc.value})
         print("Gspread authentication completed successfully.")
